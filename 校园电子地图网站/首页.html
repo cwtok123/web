@@ -1,0 +1,285 @@
+<!doctype html>
+<html>
+<head>
+<title>福建农林大学电子地图-首页</title>
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="OpenLayers.js"></script> 
+<script type="text/javascript">
+var map;
+function init()
+		{
+			format = 'image/png';
+			//定义地图边界
+			var bounds= new OpenLayers.Bounds(119.2273966319442, 26.079338269108572,
+                    119.23908594035527, 26.092174016902618);
+			var options = {
+                    maxExtent: bounds,
+                    maxResolution: 0.0000501396398205,
+                    projection: "EPSG:4326",  //坐标系为北京1954 6度带20N
+                    units: 'degrees'				
+			};
+			map = new OpenLayers.Map('map',options);
+			var wms = new OpenLayers.Layer.WMS("OpenLayers WMS",
+				
+				"http://172.27.25.76:8080/geoserver/kongjianfenxi4/wms",   //geoserver所在服务器地址
+				{
+					layers: "fafumap"  //图层名
+				});
+			//添加wms图层
+			map.addLayer(wms);	
+					
+			//添加control空间
+			map.addControl(new OpenLayers.Control.MousePosition());  
+			map.addControl(new OpenLayers.Control.ScaleLine());  //线状比例尺
+			map.addControl(new OpenLayers.Control.Scale);    //比例尺
+									
+			map.zoomToMaxExtent(bounds);
+			
+			//点击查询要素信息
+			map.events.register('click', map, function (e) {
+                    document.getElementById('information').innerHTML = "Loading... please wait...";
+                    var params = {
+                        REQUEST: "GetFeatureInfo",
+                        EXCEPTIONS: "application/vnd.ogc.se_xml",
+                        BBOX: map.getExtent().toBBOX(),
+                        SERVICE: "WMS",
+                        INFO_FORMAT: 'text/html',
+                        QUERY_LAYERS: map.layers[0].params.LAYERS,
+                        FEATURE_COUNT: 1,
+                        "Layers": 'fafumap',
+                        WIDTH: map.size.w,
+                        HEIGHT: map.size.h,
+                        format: format,
+                        styles: map.layers[0].params.STYLES,
+                        srs: map.layers[0].params.SRS};
+                    
+                    // handle the wms 1.3 vs wms 1.1 madness
+                    if(map.layers[0].params.VERSION == "1.3.0") {
+                        params.version = "1.3.0";
+                        params.j = parseInt(e.xy.x);
+                        params.i = parseInt(e.xy.y);
+                    } else {
+                        params.version = "1.1.1";
+                        params.x = parseInt(e.xy.x);
+                        params.y = parseInt(e.xy.y);
+                    }
+                        
+                    // merge filters
+                    if(map.layers[0].params.CQL_FILTER != null) {
+                        params.cql_filter = map.layers[0].params.CQL_FILTER;
+                    } 
+                    if(map.layers[0].params.FILTER != null) {
+                        params.filter = map.layers[0].params.FILTER;
+                    }
+                    if(map.layers[0].params.FEATUREID) {
+                        params.featureid = map.layers[0].params.FEATUREID;
+                    }
+                    OpenLayers.loadURL("http://172.27.25.76:8080/geoserver/kongjianfenxi4/wms", params, this, onComplete, setHTML);
+                    OpenLayers.Event.stop(e);
+					
+					function onComplete(response)
+					{
+						var x=document.getElementById('information');
+				        x.innerHTML = response.responseText;
+						var t=x.getElementsByTagName('td');
+						var str = "photo/"+t[2].innerHTML+".jpg";
+						var u = encodeURI(str);
+						document.getElementById('information').innerHTML ="要素名称为："+t[2].innerHTML;
+						document.getElementById('photo').src = u;
+				    };
+					
+                });
+		}
+
+//将要素查询结果显示于nodelist div容器中		
+function setHTML(response){
+				document.getElementById('information').innerHTML = response.responseText;
+			};
+</script>
+<STYLE type=text/css>
+A:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff00ff; TEXT-DECORATION: underline
+}
+#bar A:link {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: 700
+}
+#bar A:visited {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: 700
+}
+#bar A:hover {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: 700
+}
+#bar A:active {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: 700
+}
+.content {
+	LINE-HEIGHT: 180%
+}
+.content2 {
+	LINE-HEIGHT: 150%
+}
+#barq A:link {
+	FONT-SIZE: 14pt; FONT-WEIGHT: 700
+}
+#barq A:visited {
+	FONT-SIZE: 14pt; FONT-WEIGHT: 700
+}
+#barq A:hover {
+	FONT-SIZE: 14pt; FONT-WEIGHT: 700
+}
+#barq A:active {
+	FONT-SIZE: 14pt; FONT-WEIGHT: 700
+}
+.chan_tit_td_3 A {
+	FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+.chan_tit_td_3 A:hover {
+	FONT-SIZE: 14px; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.chan_con_td_3 A {
+	FONT-SIZE: 12px; TEXT-INDENT: 2em
+}
+.chan_con_td_3 A:hover {
+	TEXT-DECORATION: underline
+}
+A.ST:link {
+	FONT-SIZE: 16px
+}
+A.ST:active {
+	FONT-SIZE: 16px
+}
+A.ST:visited {
+	FONT-SIZE: 16px
+}
+.ST {
+	FONT-SIZE: 16px
+}
+A.barlink:link {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: normal; COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.barlink:active {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: normal; COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.barlink:visited {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: normal; COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.barlink:hover {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: normal; COLOR: #ffffff; TEXT-DECORATION: underline
+}
+.ST {
+	FONT-SIZE: 16px
+}
+.STYLE4 {
+	FONT-SIZE: 10.5pt
+}
+.STYLE5 {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: bold
+}
+
+#map {
+	height: 620px;
+	width: 600px;
+	border:3px #008000 solid;
+}
+#information {
+	height: 90px;
+	width:auto;
+	border:3px #008000 solid;
+}
+#photo {
+	height: 400px;
+	border:3px #008000 solid;
+}
+#weather {
+	height: 100px;
+	border:3px #008000 solid;
+}
+</STYLE>
+</head>
+
+<BODY aLink=#000000 link=#000000 vLink=#000000 onload="init()">
+<TABLE cellSpacing=0 cellPadding=0 width=1000 align=center border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center>
+      <TABLE id=table101 cellSpacing=0 cellPadding=0 width=1000 border=0>
+        <TBODY>
+        <TR>
+          <TD height=130 width=380 align=left><IMG border=0 
+            src="picture/logo.jpg" width=286 height=66></TD>
+          <TD vAlign=bottom width=650>&nbsp;</TD></TR></TBODY></TABLE></DIV></TD></TR>
+  <TR>
+    <TD>
+      <TABLE id=table2 height=30 cellSpacing=0 cellPadding=0 width=1000 
+      align=center bgColor=#008000 border=0>
+        <TBODY>
+        <TR>
+          <TD width=10></TD>
+          <TD width=980>
+            <TABLE class=barlink cellSpacing=0 cellPadding=0 width="100%" 
+            align=center border=0>
+              <TBODY>
+              <TR>
+                <TD>
+                  <DIV id=_p_1>
+                    <a href="首页.html" ><FONT color=#ffffff>首页</FONT></a>
+                    <a href="全景图.html" ><FONT color=#ffffff>全景图</FONT></a>
+                    <a href="学校概况.html" ><FONT color=#ffffff>学校概况</FONT></a>
+					<a href="http://www.fafu.edu.cn/"; target="_blank"><FONT color=#ffffff>福建农林大学官网</FONT></a>
+					<a href="http://jwgl.fafu.edu.cn/%28wvlgo155ickwkouxb50rwa55%29/default2.aspx"; target="_blank"><FONT color=#ffffff>教务管理系统</FONT></a>
+                  </DIV>
+                </TD></TR></TBODY></TABLE></TD>
+          <TD width=10></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <DIV align=center>
+      <TABLE id=table2 cellSpacing=0 cellPadding=0 width=1000 border=0>
+        <TBODY>
+        <TR>
+          <TD align=left>
+            <TABLE height="231%" cellSpacing=0 cellPadding=0 width=1000 
+border=0>
+              <TBODY>
+              <TR>
+                
+                <TD bgColor=#ffffff width=1></TD>
+                <TD vAlign=top width=739>
+                  <TABLE height="100%" cellSpacing=0 cellPadding=0 width="99%" 
+                  border=0>
+                    <TBODY>
+                    <TR>
+                      <TD width="62%" 
+                      align=left background=学校概况_files/list_weizhi_bg.gif>&nbsp;</TD>
+                      <TD width="38%" height=30 
+                      align=left background=学校概况_files/list_weizhi_bg.gif>&nbsp;</TD></TR>
+                    <TR>
+                      <TD rowspan="3" vAlign=top bgColor=#f8fcfc><div id="map"></div></TD>
+                      <TD bgColor=#f8fcfc height="112" vAlign=top><div id="weather"><iframe src="http://cache.xixik.com.cn/1/fuzhou/" width="330" height="35" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div></TD>
+                    </TR>
+                    <TR>
+                      <TD bgColor=#f8fcfc height="106" vAlign=top><div id="information">点击查询要素
+</div></TD>
+                    </TR>
+                    <TR>
+                      <TD bgColor=#f8fcfc height="100%" vAlign=top><img width="365" height="394" id="photo"></img></TD></TR></TBODY></TABLE>
+                  <p>&nbsp;</p></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></DIV></TD></TR>
+  <TR>
+    <TD>
+      <DIV align=center>
+      <TABLE id=table75 cellSpacing=0 cellPadding=0 width=1000 border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#008000 height=30>
+            <P align=center><FONT color=#ffffff>闽ICP备10012082号 版权所有 © 福建农林大学 
+            地址:福建省福州市仓山区上下店路15号 邮编:350002 
+    </FONT></P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></BODY>
+</html>
+

@@ -1,0 +1,2 @@
+程序在主要三个HTML页面中
+每个页面里有单独的HTML+CSS设计，JavaScript部分也写在了HTML文件中

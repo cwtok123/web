@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+
+<STYLE type=text/css>A:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff00ff; TEXT-DECORATION: underline
+}
+#bar A:link {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: 700
+}
+#bar A:visited {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: 700
+}
+#bar A:hover {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: 700
+}
+#bar A:active {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: 700
+}
+.content {
+	LINE-HEIGHT: 180%
+}
+.content2 {
+	LINE-HEIGHT: 150%
+}
+#barq A:link {
+	FONT-SIZE: 14pt; FONT-WEIGHT: 700
+}
+#barq A:visited {
+	FONT-SIZE: 14pt; FONT-WEIGHT: 700
+}
+#barq A:hover {
+	FONT-SIZE: 14pt; FONT-WEIGHT: 700
+}
+#barq A:active {
+	FONT-SIZE: 14pt; FONT-WEIGHT: 700
+}
+.chan_tit_td_3 A {
+	FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+.chan_tit_td_3 A:hover {
+	FONT-SIZE: 14px; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.chan_con_td_3 A {
+	FONT-SIZE: 12px; TEXT-INDENT: 2em
+}
+.chan_con_td_3 A:hover {
+	TEXT-DECORATION: underline
+}
+A.ST:link {
+	FONT-SIZE: 16px
+}
+A.ST:active {
+	FONT-SIZE: 16px
+}
+A.ST:visited {
+	FONT-SIZE: 16px
+}
+.ST {
+	FONT-SIZE: 16px
+}
+A.barlink:link {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: normal; COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.barlink:active {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: normal; COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.barlink:visited {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: normal; COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.barlink:hover {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: normal; COLOR: #ffffff; TEXT-DECORATION: underline
+}
+.ST {
+	FONT-SIZE: 16px
+}
+.STYLE4 {
+	FONT-SIZE: 10.5pt
+}
+.STYLE5 {
+	FONT-SIZE: 10.5pt; FONT-WEIGHT: bold
+}
+</STYLE>
+</head>
+
+<BODY aLink=#000000 link=#000000 vLink=#000000>
+<TABLE cellSpacing=0 cellPadding=0 width=1000 align=center border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center>
+      <TABLE id=table101 cellSpacing=0 cellPadding=0 width=1000 border=0>
+        <TBODY>
+        <TR>
+          <TD height=130 width=380 align=left><IMG border=0 
+            src="picture/logo.jpg" width=286 height=66></TD>
+          <TD vAlign=bottom width=650>&nbsp;</TD></TR></TBODY></TABLE></DIV></TD></TR>
+  <TR>
+    <TD>
+      <TABLE id=table2 height=30 cellSpacing=0 cellPadding=0 width=1000 
+      align=center bgColor=#008000 border=0>
+        <TBODY>
+        <TR>
+          <TD width=10></TD>
+          <TD width=980>
+            <TABLE class=barlink cellSpacing=0 cellPadding=0 width="100%" 
+            align=center border=0>
+              <TBODY>
+              <TR>
+                <TD>
+                  <SCRIPT language=javascript>   function getHttpObj(){       var xmlHttp = false;       try {           xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");       }catch (e) {           try {               xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");           }catch (e2) {               xmlHttp = false;           }       }       if (!xmlHttp && typeof XMLHttpRequest != 'undefined'){           xmlHttp = new XMLHttpRequest();       }       return xmlHttp;   }   function P(pltId,url){       this.portletId=pltId;       this.url=url;       this.kind=0;   }   function T(pltId,url){       this.portletId=pltId;       this.url=url;       this.kind=1;   }   function I(pltId, url, fun){       this.portletId=pltId;       this.url=url;       this.kind=2;       this.nextFunc=fun;   }   var PLTS=new Array();   var cur1=0;   var Loader1= getHttpObj();   function loadps(){       if(cur1<PLTS.length){           Loader1.open('GET',PLTS[cur1].url+'?'+new Date().getTime()+(10000+parseInt(Math.random()*10000)));           Loader1.onreadystatechange=endloadps;           Loader1.send(null);       }   };   function endloadps(){       if(Loader1.readyState==4){           if(Loader1.status==200){               var response=Loader1.responseText;               if(PLTS[cur1].kind==2) {                   _listArticleCount =response.replace(/(^\s*)|(\s*$)/g, "");                   try {                       eval(PLTS[cur1].nextFunc);                   }catch(e){                       alert('高效分页初始化失败！');                   }               }               try{                   if(window.execScript){                       document.getElementById(PLTS[cur1].portletId).outerHTML='<body>'+response+'</body>';                   } else{                       document.getElementById(PLTS[cur1].portletId).innerHTML=response;                   }               } catch(e){}               var regx=new RegExp('<scr'+'ipt[^>]*?>([\\s\\S]*?)<\\/scr'+'ipt\\s*>|<scr'+'ipt[^>]*?\\/>','img');               var arr;               while((arr = regx.exec(response)) != null){                   if(arr.length){                       if(arr.length >=2){                           var regx2 = new RegExp("<scr"+"ipt[^>]*?\\bsrc=\\s*('[^>]*'|\"[^>]*\"|[\\S]*)\\s*\\/?>",'im');                           var srcArr=regx2.exec(arr[0]);                           if(srcArr!=null){                               var src= srcArr[1];                               if(src){                                   if((src.charAt(0)=='"') || (src.charAt(0)=="'")){                                       src=src.substr(1,src.length-2);                                   }                                   loadScript(src);                               }                           } else{                               execJavaScript(arr[1]);                           }                       }                   }               }           }           cur1++;           loadps();       }   }   function loadScript(s){       try{           var sc=document.createElement('script');           sc.type='text/javascript';           sc.language='javascript';           sc.src=s;           document.body.appendChild(sc);       }catch(e){}   }   function execJavaScript(s){       try{           var sc=document.createElement('script');           sc.type='text/javascript';           sc.language='javascript';           sc.text=s;           document.body.appendChild(sc);       }catch(e){}   }   window.onload=loadps;</SCRIPT>
+
+                  <DIV id=_p_1>
+                    <a href="首页.html" ><FONT color=#ffffff>首页</FONT></a>
+                    <a href="全景图.html" ><FONT color=#ffffff>全景图</FONT></a>
+                    <a href="学校概况.html" ><FONT color=#ffffff>学校概况</FONT></a>
+					<a href="http://www.fafu.edu.cn/"; target="_blank"><FONT color=#ffffff>福建农林大学官网</FONT></a>
+					<a href="http://jwgl.fafu.edu.cn/%28wvlgo155ickwkouxb50rwa55%29/default2.aspx"; target="_blank"><FONT color=#ffffff>教务管理系统</FONT></a>
+                  </DIV>
+                  <SCRIPT language=javascript>PLTS[PLTS.length]=new P('_p_1','/s/176/t/151/p/1/p.htm');</SCRIPT>
+                </TD></TR></TBODY></TABLE></TD>
+          <TD width=10></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <DIV align=center>
+      <TABLE id=table2 cellSpacing=0 cellPadding=0 width=1000 border=0>
+        <TBODY>
+        <TR>
+          <TD align=left>
+            <TABLE height="231%" cellSpacing=0 cellPadding=0 width=1000 
+border=0>
+              <TBODY>
+              <TR>
+                
+                <TD bgColor=#ffffff width=1></TD>
+                <TD vAlign=top width=739>
+                  <TABLE height="100%" cellSpacing=0 cellPadding=0 width="100%" 
+                  border=0>
+                    <TBODY>
+                    <TR>
+                      <TD height=30 background=picture/list_weizhi_bg.gif 
+                      align=left>　</TD></TR>
+                    <TR>
+                      <TD bgColor=#f8fcfc height="100%" vAlign=top>
+                        <TABLE borderColor=#f1f1f1 cellSpacing=0 cellPadding=0 
+                        width="100%" align=center border=3>
+                          <TBODY>
+                          <TR>
+                            <TD><BR>
+                              <TABLE class=main_table_bg cellPadding=0 
+                              width="100%" bgColor=#f8fcfc border=0>
+                                <TBODY>
+                                <TR>
+                                <TD>
+                                <TABLE cellSpacing=0 cellPadding=0 width="98%" 
+                                align=center border=0>
+                                <TBODY>
+                                <TR>
+                                <TD height=42 vAlign=top align=left>
+                                <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                                border=0>
+                                <TBODY>
+                                <TR>
+                                <TD height=22>
+                                <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                                border=0>
+                                <TBODY>
+                                <TR>
+                                <TD height=30><SPAN 
+                                class=zi_zt_10><STRONG>学校简介</STRONG></SPAN></TD>
+                                </TR></TBODY></TABLE></TD></TR>
+                                <TR>
+                                <TD>&nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+                                <TR>
+                                <TD>
+                                <TABLE cellSpacing=0 cellPadding=0 width="96%" 
+                                align=center border=0>
+                                <TBODY>
+                                <TR>
+                                <TD class=ST height=24>
+                                <DIV style="LINE-HEIGHT: 200%" align=left>
+                                <P align=left>&nbsp;</P>
+                                <P 
+                                style="MARGIN-BOTTOM: 0pt; MARGIN-TOP: 0cm; LINE-HEIGHT: 150%" 
+                                align=left><SPAN>福建农林大学是农业部、国家林业局与福建省政府共建大学，是福建省重点建设的三所高水平大学之一,在培养高质量人才、开展高水平科学研究、提供高效益的社会服务等方面取得了丰硕的办学成果。</SPAN></P>
+                                <P align=center><IMG border=0 alt="" 
+                                src="picture/bb2dd5b2-4efe-4648-98cb-ef0a0d953b20.jpg"></P>
+                                <P align=left>&nbsp;</P>
+                                <P><SPAN>【学校是全国最早创办的农林院校之一】</SPAN><SPAN>学校创办于1936年，现已发展成为一所以农林学科为优势和特色，理、工、经、管、文、法等多学科协调发展的省属重点大学。设有23个以全日制本科生和研究生培养为主的学院</SPAN><SPAN>，全日制在校生2.8万人，其中博、硕士研究生4500人。校园</SPAN><SPAN>占地4800余亩，另有科教基地1178亩，教学林场4.59万亩。校园环境优美</SPAN><SPAN>，鸟语花香，先后荣赝全国文明单位、全国绿化模范单位， 
+                                全国生态文明教育基地等称号。</SPAN></P>
+                                <P><SPAN>【学校办学水平居全国省属农林院校前列】</SPAN><SPAN>学校现有11个一级学科博士点，23个一级学科硕士点，11个博士后科研流动站，数量均居全国省属农林院校第2位。设有国家和部省级创新平台90个，其中国家工程技术研究中心2个、国家地方联合工程实验室（工程研究中心）2个，并与安溪铁观音集团合作共建“国家茶叶质量安全工程技术研究中心”，国家级科研平台数量居全国省属农林院校第一。</SPAN></P>
+                                <P><SPAN>【学校综合实力居福建高校前列】</SPAN><SPAN>学校现有2个国家重点学科，24个部省级重点学科，3个省级优势学科平台和9个省级特色重点学科。在全国第三轮学科评估中，1个学科进入全国前5名，4个学科进入全国前10名，8个学科进入全国前20名，均占福建省属高校50%左右，排名第一。2014年学校到位科研经费1.58亿元，获国家级部省级科研项目和科研经费分别居福建省属高校第1位，第2位。获得国家科学技术三大奖28项，居福建省高校第2位，其中包括糖料界迄今唯一的国家科技进步一等奖。</SPAN></P>
+                                <P><SPAN>【学校师资水平居福建省高校前列】</SPAN><SPAN>学校现有教职工2300多人，其中中国科学院、中国工程院院院士（含双聘）10人、全国杰出专业技术人才2人、国家</SPAN><SPAN>“</SPAN><SPAN>千人计划</SPAN><SPAN>”</SPAN><SPAN>专家5人、教育部“长江学者”4人、国家杰出青年基金项目获得者1人，入选国家</SPAN><SPAN>“</SPAN><SPAN>百千万人才工程</SPAN><SPAN>”</SPAN><SPAN>等各类国家级人才130多人次。</SPAN></P>
+                                <P><SPAN>【</SPAN><SPAN>学校</SPAN><SPAN>人才培养质量居福建高校前列】</SPAN><SPAN>学校实施多样化人才培养模式，开办“创新实验班”，每年选拔220名左右学生，开展拔尖创新人才培养；列入教育部首批“卓越农林人才教育培养计划”试点高校，涵盖8个本科专业，积极探索构建多层次、多类型、多样化的高等农林人才培养体系；积极鼓励学生参加国家级、省级大学生创新创业计划项目和各类学科竞赛，连续11年“挑战杯”成绩均居全国高校前列，福建高校第一。</SPAN></P>
+                                <P 
+                                style="MARGIN-BOTTOM: 0pt; MARGIN-TOP: 0cm; LINE-HEIGHT: 200%"><SPAN>【</SPAN><SPAN>学校</SPAN><SPAN>社会服务水平居福建高校第一】</SPAN><SPAN>学校建有国家级新农村发展研究院，服务覆盖福建省73个县区和全国32个省市370个县区。参加中国</SPAN><SPAN>•</SPAN><SPAN>福建项目成果交易会，连续12年对接并获资助项目数居所有参会高校和科研院所第一，创造了巨大的效益，其中学校发明的菌草技术推广到80多个国家；育成的甘蔗品种占全国甘蔗种植面积的85%；育成的麻类品种占全国的2/3并覆盖全国种植面积1/2以上；选育了全国推广范围最广的甘薯和花生新品种。</SPAN></P>
+                                <P 
+                                style="MARGIN-BOTTOM: 0pt; MARGIN-TOP: 0cm; LINE-HEIGHT: 200%"><SPAN>【</SPAN><SPAN>学校</SPAN><SPAN>开放办学水平居福建高校前列】</SPAN><SPAN>学校是教育部中国政府留学生奖学金接受院校，有美国、加拿大、苏丹、泰国等六大洲30个国家的来华留学生在校学习、研究。与加拿大戴尔豪斯大学、加拿大英属哥伦比亚大学联合举办本科专业教育项目已经连续招生12年；与南非德班理工大学合作共建了全球第二所农业特色孔子学院；与美国德州农工大学联合培养博硕士研究生项目是全国省属农林院校第一个项目；学校率先对台湾开展单独招生，同时每年选派100名交换生到台湾高校交流学习。</SPAN></P>
+                                <P 
+                                style="MARGIN-BOTTOM: 0pt; MARGIN-TOP: 0cm; LINE-HEIGHT: 200%"><SPAN>当前，学校正全面推进高水平大学建设，朝着建设更具特色更为开放更加和谐的国内一流农林的奋斗目标阔步迈进，积极打造福建农林大学“升级版”，努力为国家和新福建建设做出新的更大贡献。</SPAN><SPAN>（2015年5月更新）</SPAN></P>
+                                <P 
+                                style="MARGIN-BOTTOM: 0pt; MARGIN-TOP: 0cm; LINE-HEIGHT: 200%">&nbsp;</P><IMG 
+                                style="DISPLAY: none" 
+                                src="picture/addarticlecount.txt" width=0 
+                                height=0></IMG> </DIV></TD></TR></TBODY></TABLE>
+                      <P></P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><BR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></DIV></TD></TR>
+  <TR>
+    <TD>
+      <DIV align=center>
+      <TABLE id=table75 cellSpacing=0 cellPadding=0 width=1000 border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#008000 height=30>
+            <P align=center><FONT color=#ffffff>闽ICP备10012082号 版权所有 © 福建农林大学 
+            地址:福建省福州市仓山区上下店路15号 邮编:350002 
+    </FONT></P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></BODY>
+</html>
